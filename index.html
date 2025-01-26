@@ -12,20 +12,20 @@
             padding: 0;
             height: 100%;
             font-family: Arial, sans-serif;
-            background-color: #000; /* Ensure background is dark to match video */
+            background-color: #000;
         }
 
-        /* Full-screen video player */
-        video {
+        /* Full-screen iframe video player */
+        iframe {
             width: 100%;
-            height: 100%; /* Take full height of the screen */
+            height: 95%;
             border: none;
         }
 
-        /* Coming soon message styling */
+        /* Message styling for the bottom */
         .coming-soon {
             position: fixed;
-            bottom: 10px;
+            bottom: 0;
             width: 100%;
             text-align: center;
             z-index: 100;
@@ -34,95 +34,20 @@
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             box-sizing: border-box;
-            border-radius: 10px;
             font-weight: bold;
-            opacity: 0;
-            animation: fadeIn 2s ease-in forwards;
-            display: none; /* Initially hidden */
-        }
-
-        /* Animation for fade-in */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Timer symbol styling */
-        .timer {
-            font-size: 30px;
-            color: #ff0;
-            margin-right: 10px;
-        }
-
-        /* Watch again button styling */
-        .watch-again-btn {
-            display: none; /* Initially hidden */
-            position: fixed;
-            bottom: 50px;
-            width: 200px;
-            padding: 15px;
-            background-color: #007bff;
-            color: #fff;
-            font-size: 18px;
-            text-align: center;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-sizing: border-box;
-            z-index: 101;
-        }
-
-        /* Button hover effect */
-        .watch-again-btn:hover {
-            background-color: #0056b3;
+            border-radius: 10px 10px 0 0;
         }
     </style>
 </head>
 <body>
 
-    <!-- Full-screen video player using HTML5 video tag -->
-    <video id="videoPlayer" controls>
-        <source src="your-video-file-url.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <!-- Full-screen iframe video player -->
+    <iframe src="https://drive.google.com/file/d/13OsQ_-DmGv6hVEFP-migZT9zsl-JmAFm/preview" allow="autoplay"></iframe>
 
-    <!-- "Coming Soon" message with a timer symbol, positioned at the bottom -->
-    <div id="comingSoon" class="coming-soon">
-        <span class="timer">⏳</span> The code will be released soon. Stay tuned!
+    <!-- "Coming Soon" message at the bottom, styled to avoid overlap -->
+    <div class="coming-soon">
+        ⏳ The code will be released soon. Stay tuned!
     </div>
-
-    <!-- Watch Again button -->
-    <button id="watchAgainBtn" class="watch-again-btn" onclick="watchAgain()">Watch Again</button>
-
-    <script>
-        // Get the video element
-        const videoPlayer = document.getElementById("videoPlayer");
-        const comingSoonMessage = document.getElementById("comingSoon");
-        const watchAgainBtn = document.getElementById("watchAgainBtn");
-
-        // Event listener to detect when the video ends
-        videoPlayer.addEventListener("ended", function() {
-            // Display the "coming soon" message after the video ends
-            comingSoonMessage.style.display = "block";
-            // Show the "Watch Again" button
-            watchAgainBtn.style.display = "block";
-        });
-
-        // Function to restart the video and hide the message and button
-        function watchAgain() {
-            // Restart the video
-            videoPlayer.currentTime = 0;
-            videoPlayer.play();
-
-            // Hide the "coming soon" message and the "watch again" button
-            comingSoonMessage.style.display = "none";
-            watchAgainBtn.style.display = "none";
-        }
-    </script>
 
 </body>
 </html>
