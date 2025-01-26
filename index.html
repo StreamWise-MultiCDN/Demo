@@ -12,19 +12,20 @@
             padding: 0;
             height: 100%;
             font-family: Arial, sans-serif;
+            background-color: #000; /* Ensure background is dark to match video */
         }
 
         /* Full-screen iframe for video */
         iframe {
             width: 100%;
-            height: 90%;
+            height: 100%; /* Take full height of the screen */
             border: none;
         }
 
         /* Coming soon message styling */
         .coming-soon {
             position: absolute;
-            bottom: 0;
+            bottom: 10%;
             width: 100%;
             text-align: center;
             z-index: 100;
@@ -35,53 +36,37 @@
             box-sizing: border-box;
             border-radius: 10px;
             font-weight: bold;
-            transition: all 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
         }
 
-        /* Button to trigger message visibility */
-        .btn {
-            position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 15px 30px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-
-        /* Animated loading indicator */
-        .loading-indicator {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            z-index: 100;
-        }
-        
-        /* Fade-in effect for the coming soon message */
-        .fade-in {
-            animation: fadeIn 2s ease-in;
-        }
-
+        /* Animation for fade-in */
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
             to {
                 opacity: 1;
+            }
+        }
+
+        /* Timer symbol styling */
+        .timer {
+            font-size: 30px;
+            color: #ff0;
+            animation: blink 1s infinite step-start;
+        }
+
+        /* Blinking animation for the timer */
+        @keyframes blink {
+            0% {
+                visibility: visible;
+            }
+            50% {
+                visibility: hidden;
+            }
+            100% {
+                visibility: visible;
             }
         }
     </style>
@@ -91,42 +76,10 @@
     <!-- Full-screen Google Drive video player -->
     <iframe id="videoFrame" src="https://drive.google.com/file/d/13OsQ_-DmGv6hVEFP-migZT9zsl-JmAFm/preview" allow="autoplay"></iframe>
 
-    <!-- Loading indicator -->
-    <div class="loading-indicator" id="loadingIndicator">Loading... Please wait.</div>
-
-    <!-- "Code will be released soon" message -->
-    <div id="comingSoonMessage" class="coming-soon fade-in">The code will be released soon. Stay tuned!</div>
-
-    <!-- Interactive button -->
-    <button class="btn" onclick="toggleMessage()">Click to Toggle Code Release Message</button>
-
-    <script>
-        // Function to toggle the visibility of the "coming soon" message
-        function toggleMessage() {
-            var message = document.getElementById('comingSoonMessage');
-            if (message.style.display === 'none') {
-                message.style.display = 'block';
-            } else {
-                message.style.display = 'none';
-            }
-        }
-
-        // Function to show the loading indicator when the video is loading
-        var videoFrame = document.getElementById('videoFrame');
-        var loadingIndicator = document.getElementById('loadingIndicator');
-
-        videoFrame.onload = function() {
-            loadingIndicator.style.display = 'none'; // Hide loading when the video is ready
-        };
-
-        // Show the loading indicator while the video loads
-        loadingIndicator.style.display = 'block';
-
-        // Fade in the "coming soon" message with a delay
-        setTimeout(function() {
-            document.getElementById('comingSoonMessage').style.display = 'block';
-        }, 2000);
-    </script>
+    <!-- "Coming Soon" message with a timer symbol -->
+    <div class="coming-soon">
+        <span class="timer">⏳</span> The code will be released soon. Stay tuned!
+    </div>
 
 </body>
 </html>
