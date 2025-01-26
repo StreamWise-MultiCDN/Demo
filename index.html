@@ -38,6 +38,7 @@
             font-weight: bold;
             opacity: 0;
             animation: fadeIn 2s ease-in forwards;
+            display: none; /* Initially hidden */
         }
 
         /* Animation for fade-in */
@@ -56,6 +57,29 @@
             color: #ff0;
             margin-right: 10px;
         }
+
+        /* Watch again button styling */
+        .watch-again-btn {
+            display: none; /* Initially hidden */
+            position: fixed;
+            bottom: 50px;
+            width: 200px;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-sizing: border-box;
+            z-index: 101;
+        }
+
+        /* Button hover effect */
+        .watch-again-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -64,9 +88,39 @@
     <iframe id="videoFrame" src="https://drive.google.com/file/d/13OsQ_-DmGv6hVEFP-migZT9zsl-JmAFm/preview" allow="autoplay"></iframe>
 
     <!-- "Coming Soon" message with a timer symbol, positioned at the bottom -->
-    <div class="coming-soon">
+    <div id="comingSoon" class="coming-soon">
         <span class="timer">⏳</span> The code will be released soon. Stay tuned!
     </div>
+
+    <!-- Watch Again button -->
+    <button id="watchAgainBtn" class="watch-again-btn" onclick="watchAgain()">Watch Again</button>
+
+    <script>
+        // Get the video iframe and video element
+        const video = document.getElementById("videoFrame");
+        const comingSoonMessage = document.getElementById("comingSoon");
+        const watchAgainBtn = document.getElementById("watchAgainBtn");
+
+        // Event listener to detect when the video ends
+        video.addEventListener("load", function() {
+            video.contentWindow.document.querySelector("video").addEventListener("ended", function() {
+                // Display the "coming soon" message after the video ends
+                comingSoonMessage.style.display = "block";
+                // Show the "Watch Again" button
+                watchAgainBtn.style.display = "block";
+            });
+        });
+
+        // Function to restart the video and hide the message and button
+        function watchAgain() {
+            // Restart the video by reloading the iframe's src
+            video.src = video.src; // This will reload the video
+
+            // Hide the "coming soon" message and the "watch again" button
+            comingSoonMessage.style.display = "none";
+            watchAgainBtn.style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
