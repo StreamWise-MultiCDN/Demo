@@ -23,16 +23,55 @@
             border-radius: 10px;
             margin-top: 20px;
         }
+        #playback-controls {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Welcome to StreamWise Demo</h1>
-    <p>This is a placeholder page for testing GitHub Pages deployment.</p>
+    <p>This is a placeholder page for testing GitHub Pages deployment with frame-by-frame video playback.</p>
 
     <!-- Video player -->
-    <video controls>
+    <video id="video" controls>
         <source src="demo.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <!-- Playback controls -->
+    <div id="playback-controls">
+        <button onclick="playFrame()">Play Frame by Frame</button>
+        <button onclick="pauseVideo()">Pause</button>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        let frameInterval = 0.04; // Interval in seconds for frame-by-frame (adjust as needed)
+
+        function playFrame() {
+            if (!video.paused) {
+                video.pause(); // Pause the video initially
+            }
+
+            // Start frame-by-frame playback
+            let currentTime = video.currentTime;
+
+            function nextFrame() {
+                if (currentTime < video.duration) {
+                    video.currentTime = currentTime; // Set the video time to current frame
+                    currentTime += frameInterval; // Increment for the next frame
+                    video.play(); // Play the video for the current frame
+                }
+            }
+
+            // Call the function to play next frame in intervals
+            video.addEventListener('seeked', nextFrame);
+            nextFrame();
+        }
+
+        function pauseVideo() {
+            video.pause();
+        }
+    </script>
 </body>
 </html>
