@@ -24,8 +24,8 @@
 
         /* Coming soon message styling */
         .coming-soon {
-            position: absolute;
-            bottom: 10%;
+            position: fixed;
+            bottom: 10px;
             width: 100%;
             text-align: center;
             z-index: 100;
@@ -54,20 +54,7 @@
         .timer {
             font-size: 30px;
             color: #ff0;
-            animation: blink 1s infinite step-start;
-        }
-
-        /* Blinking animation for the timer */
-        @keyframes blink {
-            0% {
-                visibility: visible;
-            }
-            50% {
-                visibility: hidden;
-            }
-            100% {
-                visibility: visible;
-            }
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -76,7 +63,7 @@
     <!-- Full-screen Google Drive video player -->
     <iframe id="videoFrame" src="https://drive.google.com/file/d/13OsQ_-DmGv6hVEFP-migZT9zsl-JmAFm/preview" allow="autoplay"></iframe>
 
-    <!-- "Coming Soon" message with a timer symbol -->
+    <!-- "Coming Soon" message with a timer symbol, positioned at the bottom -->
     <div class="coming-soon">
         <span class="timer">⏳</span> The code will be released soon. Stay tuned!
     </div>
