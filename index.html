@@ -8,31 +8,60 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;
+            margin: 20px;
         }
         h1 {
             color: #333;
         }
-        p {
-            color: #666;
+        #video-container {
+            max-width: 90%;
+            margin: auto;
         }
         video {
-            max-width: 100%;
+            width: 100%;
             height: auto;
-            border: 2px solid #333;
-            border-radius: 10px;
+            max-height: 90vh;
+            border: 2px solid #000;
+        }
+        .controls {
             margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <h1>Welcome to StreamWise Demo</h1>
-    <p>This is a placeholder page for testing GitHub Pages deployment.</p>
+    <p>Frame-by-frame video playback</p>
 
-    <!-- Video player -->
-    <video controls>
-        <source src="demo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <div id="video-container">
+        <video id="videoPlayer" controls>
+            <source src="demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="controls">
+        <button onclick="stepBackward()">Previous Frame</button>
+        <button onclick="stepForward()">Next Frame</button>
+    </div>
+
+    <script>
+        const video = document.getElementById('videoPlayer');
+        const frameRate = 30;  // Assuming video has 30 frames per second
+
+        function stepForward() {
+            if (!video.paused) video.pause();
+            video.currentTime += 1 / frameRate;
+        }
+
+        function stepBackward() {
+            if (!video.paused) video.pause();
+            video.currentTime -= 1 / frameRate;
+        }
+    </script>
 </body>
 </html>
