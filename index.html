@@ -8,60 +8,46 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
         }
         h1 {
-            color: #333;
+            color: #fff;
+            margin-top: 20px;
         }
         #video-container {
-            max-width: 90%;
-            margin: auto;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         video {
             width: 100%;
-            height: auto;
-            max-height: 90vh;
-            border: 2px solid #000;
-        }
-        .controls {
-            margin-top: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+            height: 100%;
+            object-fit: contain;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to StreamWise Demo</h1>
-    <p>Frame-by-frame video playback</p>
-
+    <h1>StreamWise Demo</h1>
     <div id="video-container">
-        <video id="videoPlayer" controls>
+        <video id="videoPlayer" autoplay controls>
             <source src="demo.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
 
-    <div class="controls">
-        <button onclick="stepBackward()">Previous Frame</button>
-        <button onclick="stepForward()">Next Frame</button>
-    </div>
-
     <script>
-        const video = document.getElementById('videoPlayer');
-        const frameRate = 30;  // Assuming video has 30 frames per second
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('videoPlayer');
 
-        function stepForward() {
-            if (!video.paused) video.pause();
-            video.currentTime += 1 / frameRate;
-        }
-
-        function stepBackward() {
-            if (!video.paused) video.pause();
-            video.currentTime -= 1 / frameRate;
-        }
+            // Automatically start playback when the page loads
+            video.play().catch(error => {
+                console.error('Video playback failed:', error);
+            });
+        });
     </script>
 </body>
 </html>
