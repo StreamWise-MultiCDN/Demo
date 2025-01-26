@@ -11,20 +11,39 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            font-family: Arial, sans-serif;
         }
 
+        /* Make the iframe take up 90% of the screen height */
         iframe {
-            width: 80%;
-            height: 80%;
+            width: 100%;
+            height: 90%;
             border: none;
+        }
+
+        /* Style for the message */
+        .coming-soon {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            text-align: center;
+            z-index: 100;
+            color: #fff;
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1 style="position: relative; top: 20px; left: 20px; z-index: 100; color: black;">The code will be released soon. Stay tuned!</h1>
-
     <!-- Full-screen Google Drive video player -->
     <iframe src="https://drive.google.com/file/d/13OsQ_-DmGv6hVEFP-migZT9zsl-JmAFm/preview" allow="autoplay"></iframe>
+
+    <!-- "Code will be released soon" message -->
+    <div class="coming-soon">The code will be released soon. Stay tuned!</div>
 
 </body>
 </html>
