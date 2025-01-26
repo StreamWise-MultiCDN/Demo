@@ -1,6 +1,7 @@
 # **Project Name**
 
-🚀 **Live Demo + Papers + Code Coming Soon!** 🚀  
+🚀 **Live Demo + Papers + Code **   
+⏳ **Coming Soon!**  
 
 We are actively working on releasing our research and code to the community. Stay tuned for exciting updates!  
 
