@@ -8,46 +8,31 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
-            padding: 0;
-            background-color: #000;
+            margin: 50px;
         }
         h1 {
-            color: #fff;
-            margin-top: 20px;
+            color: #333;
         }
-        #video-container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        p {
+            color: #666;
         }
         video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>StreamWise Demo</h1>
-    <div id="video-container">
-        <video id="videoPlayer" autoplay controls>
-            <source src="demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+    <h1>Welcome to StreamWise Demo</h1>
+    <p>This is a placeholder page for testing GitHub Pages deployment.</p>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const video = document.getElementById('videoPlayer');
-
-            // Automatically start playback when the page loads
-            video.play().catch(error => {
-                console.error('Video playback failed:', error);
-            });
-        });
-    </script>
+    <!-- Video player -->
+    <video controls>
+        <source src="demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </body>
 </html>
